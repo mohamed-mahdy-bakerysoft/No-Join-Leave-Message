@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerManager.class)
 public class PlayerManagerMixin {
-    @Inject(method = "Lnet/minecraft/server/PlayerManager;broadcast(Lnet/minecraft/text/Text;Z)V", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "broadcast(Lnet/minecraft/text/Text;Z)V", at = @At("HEAD"), cancellable = true)
     public void broadcast(Text message, boolean overlay, CallbackInfo ci) {
         if (message.toString().contains("multiplayer.player.joined") || message.toString().contains("multiplayer.player.left")) {
             ci.cancel();
